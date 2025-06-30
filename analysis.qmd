@@ -2,5 +2,16 @@
 title: "Biden Polling"
 Author: Shrjeel
 format: html
+execute: 
+  echo: false
 ---
 
+```{r}
+library(tidyverse)
+poll_data <- tibble(biden = as.factor(c(rep("Yes", 655), 
+                                        rep("No", 904)))) |> 
+                slice_sample(prop = 1)
+#| message: false
+```
+
+Using data from a YouGov poll of 1,559 U.S. adult citizens conducted between March 10 and 12, 2024, we aim to estimate the proportion of voters who plan to support Biden in the 2024 election.
