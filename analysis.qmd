@@ -34,4 +34,24 @@ $$
 
 ```
 
-Using data from a YouGov poll of 1,559 U.S. adult citizens conducted between March 10 and 12, 2024, we aim to estimate the proportion of voters who plan to support Biden in the 2024 election.Using a March 10–12, 2024 YouGov poll of 1,559 US adults, we aim to estimate Biden’s support in the 2024 election.However, voter preferences may shift as the campaign progresses.
+```{r}
+library(broom)
+library(gt)
+
+tidy(fit_biden, conf.int = TRUE) |>
+  select(term, estimate, conf.low, conf.high) |>
+  gt() |>
+  tab_header(
+    title = "Model Estimates",
+    subtitle = "With 95% Confidence Intervals"
+  ) |>
+  fmt_number(columns = c(estimate, conf.low, conf.high), decimals = 3) |>
+  cols_label(
+    term = "Variable",
+    estimate = "Estimate",
+    conf.low = "Lower CI",
+    conf.high = "Upper CI"
+  )
+
+```
+Using data from a YouGov poll of 1,559 U.S. adult citizens conducted between March 10 and 12, 2024, we aim to estimate the proportion of voters who plan to support Biden in the 2024 election.Using a March 10–12, 2024 YouGov poll of 1,559 US adults, we aim to estimate Biden’s support in the 2024 election.However, voter preferences may shift as the campaign progresses.Using a March 10–12, 2024 YouGov poll of 1,559 US adults, we estimate Biden's support in the 2024 election.His popularity may change during the campaign, but in this poll, support was well below 50%.
