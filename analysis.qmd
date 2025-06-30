@@ -8,10 +8,19 @@ execute:
 
 ```{r}
 library(tidyverse)
+library(tidymodels)
+library(broom)
 poll_data <- tibble(biden = as.factor(c(rep("Yes", 655), 
                                         rep("No", 904)))) |> 
                 slice_sample(prop = 1)
 #| message: false
 ```
 
-Using data from a YouGov poll of 1,559 U.S. adult citizens conducted between March 10 and 12, 2024, we aim to estimate the proportion of voters who plan to support Biden in the 2024 election.
+```{r}
+$$
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_k X_k + \varepsilon
+$$
+
+```
+
+Using data from a YouGov poll of 1,559 U.S. adult citizens conducted between March 10 and 12, 2024, we aim to estimate the proportion of voters who plan to support Biden in the 2024 election.Using a March 10–12, 2024 YouGov poll of 1,559 US adults, we aim to estimate Biden’s support in the 2024 election.However, voter preferences may shift as the campaign progresses.
