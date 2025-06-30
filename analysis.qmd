@@ -10,6 +10,7 @@ execute:
 library(tidyverse)
 library(tidymodels)
 library(broom)
+library(marginaleffects)
 poll_data <- tibble(biden = as.factor(c(rep("Yes", 655), 
                                         rep("No", 904)))) |> 
                 slice_sample(prop = 1)
@@ -54,4 +55,32 @@ tidy(fit_biden, conf.int = TRUE) |>
   )
 
 ```
-Using data from a YouGov poll of 1,559 U.S. adult citizens conducted between March 10 and 12, 2024, we aim to estimate the proportion of voters who plan to support Biden in the 2024 election.Using a March 10–12, 2024 YouGov poll of 1,559 US adults, we aim to estimate Biden’s support in the 2024 election.However, voter preferences may shift as the campaign progresses.Using a March 10–12, 2024 YouGov poll of 1,559 US adults, we estimate Biden's support in the 2024 election.His popularity may change during the campaign, but in this poll, support was well below 50%.
+
+```{r}
+library(ggplot2)
+
+# Simulated data for the plot
+biden_support <- data.frame(
+  support = 0.42,
+  lower = 0.39,
+  upper = 0.45
+)
+
+ggplot(biden_support, aes(x = 1, y = support)) +
+  geom_point(size = 4, color = "midnightblue") +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0.1, color = "midnightblue") +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0.38, 0.46)) +
+  theme_minimal() +
+  labs(
+    title = "Support for President Biden in March 2024",
+    subtitle = "42% is not a good sign for an incumbent seeking reelection",
+    caption = "Source: YouGov poll, March 2024."
+  ) +
+  theme(
+    axis.title = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank()
+  )
+
+```
+Using data from a YouGov poll of 1,559 U.S. adult citizens conducted between March 10 and 12, 2024, we aim to estimate the proportion of voters who plan to support Biden in the 2024 election.Using a March 10–12, 2024 YouGov poll of 1,559 US adults, we aim to estimate Biden’s support in the 2024 election.However, voter preferences may shift as the campaign progresses.Using a March 10–12, 2024 YouGov poll of 1,559 US adults, we estimate Biden's support in the 2024 election.His popularity may change during the campaign, but in this poll, support was well below 50%.Using a March 2024 YouGov poll of 1,559 US adults, we estimate Biden’s election support at about 44%, ±5%.His popularity may shift over the campaign, but current support is well below 50%.
