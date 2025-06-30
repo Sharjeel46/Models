@@ -23,4 +23,15 @@ $$
 
 ```
 
+```{r}
+#| cache: true
+$$
+\widehat{p} = \frac{1}{1 + e^{-(-0.32)}} \approx 0.42
+$$
+    fit_biden <- logistic_reg() |> 
+  fit(biden ~ 1, data = poll_data)
+
+
+```
+
 Using data from a YouGov poll of 1,559 U.S. adult citizens conducted between March 10 and 12, 2024, we aim to estimate the proportion of voters who plan to support Biden in the 2024 election.Using a March 10–12, 2024 YouGov poll of 1,559 US adults, we aim to estimate Biden’s support in the 2024 election.However, voter preferences may shift as the campaign progresses.
